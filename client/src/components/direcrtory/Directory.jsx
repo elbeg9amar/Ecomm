@@ -8,7 +8,7 @@ import { selectDirectorySelector} from '../../reducer/directory/directorySelecto
 import './Directory.scss';
 
 
-function Directory({sections,fetchDirectoryStart}) {
+function Directory({sections}) {
     return (
         <div className="directory-menu">
             {sections.map(({title,imageUrl,id,size,linkUrl}) => (
