@@ -58,13 +58,14 @@ const App = ({currentUser, checkUserSession, directoryArray, fetchDirectoryStart
     );
 };
 <SigninPage/>
+
+const mapDispatchToProps = dispatch => ({
+  fetchDirectoryStart: () => dispatch(fetchDirectoryStart()),
+  checkUserSession: () => dispatch(checkUserSession()),
+}) ;
+
 const mapStateToProps =createStructuredSelector({
   currentUser: selectCurrentUser,
 });
-
-const mapDispatchToProps = dispatch => ({
-  checkUserSession: () => dispatch(checkUserSession()),
-  fetchDirectoryStart: () => dispatch(fetchDirectoryStart())
-}) ;
 
 export default connect(mapStateToProps,mapDispatchToProps)(App);
