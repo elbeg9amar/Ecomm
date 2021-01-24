@@ -8,9 +8,9 @@ import { HomepageContainer } from './homepagestyled'
 
 
 function Homepage({fetchDirectoryStart}) {
-    useEffect(()=> {
-        fetchDirectoryStart()
-    },[fetchDirectoryStart]);
+    // useEffect(()=> {
+    //     fetchDirectoryStart()
+    // },[fetchDirectoryStart]);
     return (
         <HomepageContainer>
             <Directory/>

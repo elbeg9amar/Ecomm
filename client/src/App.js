@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect';
 
 import {checkUserSession} from './reducer/user/userActions';
+import {fetchDirectoryStart} from './reducer/directory/directoryAction';
 import {selectCurrentUser} from './reducer/user/userSelector';
 
 import Spinner from './components/spinner/spinner';
@@ -24,11 +25,15 @@ const SigninPage = lazy(() => import('./pagess/signinPage/SigninPage'));
 const Checkout = lazy(() => import ('./pagess/checkout/Checkout'));
 const Item = lazy(() => import('./components/item/item.component'))
 
-const App = ({currentUser, checkUserSession, directoryArray }) =>  {
+const App = ({currentUser, checkUserSession, directoryArray, fetchDirectoryStart }) =>  {
 
   useEffect(() => {
     checkUserSession()
   },[checkUserSession]);
+
+  useEffect(()=> {
+    fetchDirectoryStart()
+},[fetchDirectoryStart]);
 
   return (
       <div>
@@ -56,9 +61,9 @@ const mapStateToProps =createStructuredSelector({
   currentUser: selectCurrentUser,
 });
 
-
 const mapDispatchToProps = dispatch => ({
-  checkUserSession: () => dispatch(checkUserSession())
+  checkUserSession: () => dispatch(checkUserSession()),
+  fetchDirectoryStart: () => dispatch(fetchDirectoryStart())
 }) ;
 
 export default connect(mapStateToProps,mapDispatchToProps)(App);
