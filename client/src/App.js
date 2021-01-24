@@ -27,13 +27,14 @@ const Item = lazy(() => import('./components/item/item.component'))
 
 const App = ({currentUser, checkUserSession, directoryArray, fetchDirectoryStart }) =>  {
 
+  useEffect(()=> {
+    fetchDirectoryStart()
+},[fetchDirectoryStart]);
+
   useEffect(() => {
     checkUserSession()
   },[checkUserSession]);
 
-  useEffect(()=> {
-    fetchDirectoryStart()
-},[fetchDirectoryStart]);
 
   return (
       <div>
