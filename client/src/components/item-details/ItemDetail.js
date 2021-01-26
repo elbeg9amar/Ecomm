@@ -1,0 +1,72 @@
+import React, {useState, createRef} from 'react';
+
+
+import Colors from './colors';
+import Thumb from './thumb';
+
+import CustomButton from '../customButton/CustomButton';
+
+import {
+    ItemContain,
+    ItemDetails,
+    ItemBigImage,
+    ItemBox,
+    BoxRow
+} from './itemDetail.styled';
+
+const initialValue = [
+    {
+        "_id": "1",
+        "title": "iPhone 12 Pro Max",
+        "src": [
+            "https://images.unsplash.com/photo-1609692814857-d0eaed5a148c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
+            "https://images.unsplash.com/photo-1609001732440-0d1768eb13b4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
+            "https://images.unsplash.com/photo-1606041011872-596597976b25?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1153&q=80",
+            "https://images.unsplash.com/photo-1606541133802-257821b63813?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+        ],
+        "description": "UI/UX designing, html css tutorials",
+        "content": "Welcome to our channel Dev AT. Here you can learn web designing, UI/UX designing, html css tutorials, css animations and css effects, javascript and jquery tutorials and related so on.",
+        "price": 23,
+        "colors":["silver","#062027","#287ef0","#c3940c"],
+    }
+];
+function ItemDetail() {
+    const myRef = createRef();
+    const [product] = useState(initialValue);
+    const [index,setIndex] = useState(0);
+
+    const handleTab = index => {
+        setIndex(index)
+        const images = myRef.current.children;
+        for(let i=0; i<images.length; i++) {
+            images[i].className = images[i].className.replace('active','');
+        }
+        images[index].className = 'active'
+    };
+    return (
+        <ItemContain>
+        {
+            product.map(item => (
+                <ItemDetails key={item._id}>
+                    <ItemBigImage className="big-img">
+                        <img src={item.src[index]} alt="product"/>
+                    </ItemBigImage>
+                    <ItemBox>
+                        <BoxRow>
+                            <h2>{item.title}</h2>
+                            <span>{item.price}</span>
+                        </BoxRow>
+                        <Colors colors={item.colors} />
+                        <p>{item.description}</p>
+                        <p>{item.content}</p>
+                        <Thumb images={item.src} tab={handleTab} myRef={myRef}/>
+                        <CustomButton>Add to Cart</CustomButton>
+                    </ItemBox>
+                </ItemDetails>
+            ))
+        }
+        </ItemContain>
+    )
+}
+
+export default ItemDetail

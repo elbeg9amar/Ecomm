@@ -13,5 +13,5 @@ export default function* rootSaga() {
         call(cartSagas),
         call(shopSagas),
         call(directorySagas)
-    ])
-}
+    ]);
+};

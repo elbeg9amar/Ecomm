@@ -36,8 +36,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
       console.log(err)
     }
   }
-  
-  return userRef
+  return userRef;
 };
 
 export const getUserCartRef = async userId => {
@@ -50,7 +49,7 @@ export const getUserCartRef = async userId => {
     return cartDocRef;
   } else {
     return snapShot.docs[0].ref
-  }
+  };
 };
 
 export const addCollectionandDocuments = async (collectionKey, objectsToAdd) => {
@@ -63,7 +62,7 @@ export const addCollectionandDocuments = async (collectionKey, objectsToAdd) => 
     batch.set(newDocRef,obj)
   });
 
-  return await batch.commit()
+  return await batch.commit();
 };
 
 
@@ -76,7 +75,7 @@ export const convertCollectionsSnapshotToMap = (collections) => {
       id: doc.id,
       title,
       items
-    }
+    };
   });
   return transformedCollection.reduce((acc,coll) => {
     acc[coll.title.toLowerCase()] = coll
@@ -88,7 +87,7 @@ export const convertDirectorySnapshotToMap = (directories) => {
   const transformedDirectory = directories.docs.map(doc => {
     const {
       title, imageUrl,id,size,linkUrl
-    } = doc.data()
+    } = doc.data();
 
     return {
       title,
@@ -96,10 +95,10 @@ export const convertDirectorySnapshotToMap = (directories) => {
       id,
       // size,
       linkUrl
-    }
-  })
-  return transformedDirectory
-}
+    };
+  });
+  return transformedDirectory;
+};
 
 
 
@@ -111,8 +110,8 @@ export const getCurrentUser = () => {
       unsubscribe();
       resolve(userAuth);
     }, reject)
-  })
-}
+  });
+};
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();

@@ -33,7 +33,7 @@ export function* checkCartFromFirebase({payload:user}){
     const cartRef = yield getUserCartRef(user.id);
     const cartSnapshot = yield cartRef.get();
     yield put(setCartFromFirebase(cartSnapshot.data().cartItems));
-}
+};
 
 export function* onSingOutSuccess() {
     yield takeLatest(UserActionTypes.SIGN_OUT_SUCEESS,clearCartOnSignOut)
@@ -58,6 +58,6 @@ export function* cartSagas() {
         call(onSingOutSuccess),
         call(onUserSignIn),
         call(onCartChange)
-    ]))
+    ]));
 };
 

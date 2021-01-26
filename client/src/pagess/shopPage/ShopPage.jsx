@@ -16,7 +16,7 @@ const ShopPage = ({fetchCollectionsStart,match}) => {
     
     useEffect(()=> {
         fetchCollectionsStart()
-    },[fetchCollectionsStart])
+    },[fetchCollectionsStart]);
 
     return (
         <div className="shop-page">
@@ -31,13 +31,13 @@ const ShopPage = ({fetchCollectionsStart,match}) => {
             />
             </Suspense>
         </div>
-    )
-}
+    );
+};
 
 
 
 const mapDispatchToProps = dispatch => ({
     fetchCollectionsStart: () => dispatch(fetchCollectionsStart())
-})
+});
 
 export default connect(null, mapDispatchToProps)(ShopPage);

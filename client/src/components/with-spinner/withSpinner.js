@@ -9,6 +9,5 @@ const withSpinner = WrappedComponent => ({
         <Spinner />
     : 
         <WrappedComponent {...otherpRops}/>
-}
-
+};
 export default withSpinner;

@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import FormInput from '../form-input/FormInput';
 import CustomButton from '../customButton/CustomButton';
 
-import {signUpStart} from '../../reducer/user/userActions'
+import {signUpStart} from '../../reducer/user/userActions';
 
 import './SignUp.scss';
 
@@ -25,14 +25,12 @@ function SignUp ({signUpStart}) {
     const {email, password, displayName, confirmPassword} = values;
     const handleSubmit = async e => {
         e.preventDefault();
-
-
         if(password !== confirmPassword){
             alert("passwords don't match")
             return;
         };
         signUpStart({displayName,email,password});
-    }
+    };
     return (
         <div className="sign-up">
             <h2 className="title">I do not have an account</h2>
@@ -77,9 +75,9 @@ function SignUp ({signUpStart}) {
             </form>
         </div>
     );
-}
+};
 const mapDispatchToProps = dispatch => ({
     signUpStart: userCredentials => dispatch(signUpStart(userCredentials))
-})
+});
 
-export default connect(null,mapDispatchToProps)(SignUp)
+export default connect(null,mapDispatchToProps)(SignUp);

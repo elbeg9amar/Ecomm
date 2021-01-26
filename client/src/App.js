@@ -23,7 +23,7 @@ const ShopPage = lazy(() => import ('./pagess/shopPage/ShopPage'));
 const Header = lazy(() => import ('./components/header/Header'));
 const SigninPage = lazy(() => import('./pagess/signinPage/SigninPage'));
 const Checkout = lazy(() => import ('./pagess/checkout/Checkout'));
-const Item = lazy(() => import('./components/item/item.component'))
+const ItemPage = lazy(() => import('./pagess/itemPage/ItemPage'));
 
 const App = ({currentUser, checkUserSession, directoryArray, fetchDirectoryStart }) =>  {
 
@@ -50,7 +50,7 @@ const App = ({currentUser, checkUserSession, directoryArray, fetchDirectoryStart
                 : (<SigninPage/>) }
                 />
                 <Route exact path='/checkout'><Checkout/></Route>
-                <Route path='/item/:id'><Item/></Route>
+                <Route path='/item/:id'><ItemPage/></Route>
             </Suspense>
           </ErrorBoundary>
         </Switch>

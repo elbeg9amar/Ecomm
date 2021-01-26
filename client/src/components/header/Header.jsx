@@ -11,9 +11,9 @@ import { ReactComponent as Logo } from '../../assets/shopping-bag.svg';
 import CartIcon from '../cart-icon/cartIcon';
 import CartDrop from '../cartDrop/CartDrop';
 
-import {HeaderContainer, LogoContianer, OptionsContainer, OptionLink} from './headerStyled'
+import {HeaderContainer, LogoContianer, OptionsContainer, OptionLink} from './headerStyled';
 
-import {signOutStart} from '../../reducer/user/userActions'
+import {signOutStart} from '../../reducer/user/userActions';
 
 
 function Header({currentUser,hidden, signOutStart}) {
@@ -44,7 +44,7 @@ function Header({currentUser,hidden, signOutStart}) {
             {hidden ? null : <CartDrop />}
         </HeaderContainer>
     )
-}
+};
 
 const mapToStateProps = createStructuredSelector({
     currentUser: selectCurrentUser,
@@ -53,6 +53,5 @@ const mapToStateProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => ({
     signOutStart: () => dispatch(signOutStart())
-})
-
-export default connect (mapToStateProps,mapDispatchToProps)(Header)
+});
+export default connect (mapToStateProps,mapDispatchToProps)(Header);
