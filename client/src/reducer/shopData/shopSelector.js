@@ -37,4 +37,9 @@ export const selectIsCollectionsLoaded = createSelector(
 export const selectItem = createSelector(
     [selectShop],
     shop => shop.item
+);
+
+export const selectRelatedProducts = createSelector(
+    [selectShop],
+    shop => shop.showRelatedProducts
 )

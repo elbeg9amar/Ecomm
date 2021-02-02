@@ -18,3 +18,11 @@ export const showItem = item => ({
     type:ShopActionTypes.SHOW_ITEM,
     payload:item
 });
+export const getCollectionToRelated = title => ({
+    type:ShopActionTypes.GET_COLLECTION_TO_RELATED,
+    payload:title
+});
+
+export const getUpdatedRelatedProducts = () => ({
+    type:ShopActionTypes.UPDATE_RELATED_PRODUCTS
+})

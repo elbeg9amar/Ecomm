@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import {showItem} from '../../reducer/shopData/shop.action';
+import {showItem, getUpdatedRelatedProducts} from '../../reducer/shopData/shop.action';
 
 
 import {
@@ -10,22 +10,21 @@ import {
   CollectionFooterContainer,
   BackgroundImage,
   NameContainer,
-  PriceContainer
 } from './collectionItemStyled';
 
-const CollectionItem = ({ item, showItem }) => {
+const CollectionItem = ({ item, showItem, getUpdatedRelatedProducts}) => {
   const history = useHistory();
-  const { name, price, imageUrl,id } = item;
+  const { name,imageUrl,id } = item;
   const onSubmit = item => {
     showItem(item);
-    history.push(`/item/${id}`)
+    history.push(`/item/${id}`);
+    // getUpdatedRelatedProducts()
   }
   return (
     <CollectionItemContainer onClick={() => onSubmit(item)}>
       <BackgroundImage className='image' imageUrl={imageUrl}/>
       <CollectionFooterContainer>
         <NameContainer>{name}</NameContainer>
-        <PriceContainer>10</PriceContainer>
       </CollectionFooterContainer>
     </CollectionItemContainer>
   );
@@ -33,6 +32,7 @@ const CollectionItem = ({ item, showItem }) => {
 
 const mapDispatchToProps = dispatch => ({
   showItem: item => dispatch(showItem(item)),
+  getUpdatedRelatedProducts: () => dispatch(getUpdatedRelatedProducts())
 });
 
 export default connect(

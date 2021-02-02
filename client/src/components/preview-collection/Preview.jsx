@@ -1,6 +1,9 @@
-import React from 'react'
+import React from 'react';
+import {connect} from 'react-redux';
 
-import CollectionItem from '../collection-item/CollectionItem'
+import CollectionItem from '../collection-item/CollectionItem';
+
+import {getCollectionToRelated} from '../../reducer/shopData/shop.action';
 
 import {
     CollectionPreviewContainer,
@@ -8,9 +11,12 @@ import {
     PreviewContainer
 } from './preview-styled'
 
-function Preview({title, items}) {
+function Preview({title, items, getCollectionToRelated}) {
+    const onClicked = title => {
+        getCollectionToRelated(String(title.toLowerCase()))
+    }
     return (
-        <CollectionPreviewContainer >
+        <CollectionPreviewContainer onClick={() => onClicked(title)}>
             <TitleContainer >{title.toUpperCase()}</TitleContainer>
             <PreviewContainer >
                 {
@@ -22,7 +28,11 @@ function Preview({title, items}) {
                 }
             </PreviewContainer>
         </CollectionPreviewContainer>
-    ) 
-}
+    );
+};
 
-export default Preview;
+const mapDispatchToProps = dispatch => ({
+    getCollectionToRelated: title => dispatch(getCollectionToRelated(title))
+});
+
+export default connect(null, mapDispatchToProps)(Preview);

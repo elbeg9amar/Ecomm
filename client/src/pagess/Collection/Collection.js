@@ -4,17 +4,24 @@ import {connect} from 'react-redux';
 import {selectCollection} from '../../reducer/shopData/shopSelector';
 import CollectionItem from '../../components/collection-item/CollectionItem';
 
+import {getCollectionToRelated} from '../../reducer/shopData/shop.action';
+
 import {
     CollectionPageContainer,
     CollectionTitle,
     CollectionItemsContainer
 } from './Collection-styled'
 
-const Collection = ({collection}) => {  
+const Collection = ({collection, getCollectionToRelated}) => {  
     
     const {title, items} = collection;
+
+    const onClicked = title => {
+        getCollectionToRelated(String(title.toLowerCase()))
+    }
+
     return (
-        <CollectionPageContainer >
+        <CollectionPageContainer onClick={()=> onClicked(title)}>
             <CollectionTitle>{title}</CollectionTitle>
             <CollectionItemsContainer >
                 {
@@ -28,10 +35,13 @@ const Collection = ({collection}) => {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-    collection: selectCollection(ownProps.match.params.collectionId)(state)
-    
-})
+    collection: selectCollection(ownProps.match.params.collectionId)(state) 
+});
 
-export default connect(mapStateToProps)(Collection);
+const mapDispatchToProps = dispatch => ({
+    getCollectionToRelated: title => dispatch(getCollectionToRelated(title))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Collection);
 
 

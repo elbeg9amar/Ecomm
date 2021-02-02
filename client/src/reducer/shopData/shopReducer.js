@@ -1,13 +1,21 @@
 
 import ShopActionTypes from './shop.types';
 
+import {
+    productsFromShopAndCollection, 
+    relatedProductsArray,
+    showItem
+} from './shop.Utils'
+
 
 
 const initialState = {
     collections: null ,
     item:null,
     isFetching: false,
-    errorMessage:undefined
+    errorMessage:undefined,
+    relatedProducts: null,
+    showRelatedProducts:null
 };
 
 const shopReducer = (state=initialState, action) => {
@@ -32,7 +40,18 @@ const shopReducer = (state=initialState, action) => {
         case ShopActionTypes.SHOW_ITEM:
             return {
                 ...state,
-                item: action.payload
+                item: showItem(state.relatedProducts,action.payload),
+                showRelatedProducts: relatedProductsArray(state.relatedProducts,action.payload.id)
+            }
+        case ShopActionTypes.GET_COLLECTION_TO_RELATED:
+            return {
+                ...state,
+                relatedProducts: productsFromShopAndCollection(state.collections,action.payload),
+            }
+        case ShopActionTypes.UPDATE_RELATED_PRODUCTS:
+            return {
+                ...state,
+                
             }
         default:
             return state;
