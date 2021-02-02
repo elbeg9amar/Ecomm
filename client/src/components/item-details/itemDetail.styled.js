@@ -64,7 +64,7 @@ export const ItemBox = styled.div`
     }
     .thumb img.active{
     opacity: 1;
-    border: 1px solid lightseagreen;
+    border: 1px solid black;
     }
 
     @media (max-width: 500px){

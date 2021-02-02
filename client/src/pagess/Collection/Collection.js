@@ -8,7 +8,7 @@ import {
     CollectionPageContainer,
     CollectionTitle,
     CollectionItemsContainer
-  } from './Collection-styled'
+} from './Collection-styled'
 
 const Collection = ({collection}) => {  
     
