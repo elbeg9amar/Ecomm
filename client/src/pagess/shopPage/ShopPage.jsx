@@ -1,7 +1,6 @@
-import React,{useEffect, lazy, Suspense} from 'react'
+import React,{useEffect, lazy, Suspense} from 'react';
 import {Route} from 'react-router-dom';
 import {connect} from 'react-redux';
-
 
 // import CollectionPageContainer from '../Collection/Collection.container';
 // import CollectionOverviewContainer from '../../components/collections-overview/collection.container';
@@ -10,7 +9,7 @@ import Spinner from '../../components/spinner/spinner'
 import {fetchCollectionsStart} from '../../reducer/shopData/shop.action';
 
 const CollectionPageContainer = lazy(() => import ('../Collection/Collection.container'));
-const CollectionOverviewContainer = lazy(() => import ('../../components/collections-overview/collection.container'))
+const CollectionOverviewContainer = lazy(() => import ('../../components/collections-overview/collection.container'));
 
 const ShopPage = ({fetchCollectionsStart,match}) => {
     

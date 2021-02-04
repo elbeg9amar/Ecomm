@@ -1,19 +1,29 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {connect} from 'react-redux';
 
-import Directory from '../../components/direcrtory/Directory.jsx';
+import {fetchDirectoryStart} from '../../reducer/directory/directoryAction';
+
+import DirectoryPageContainer from '../../components/direcrtory/directory.container';
 
 import { HomepageContainer } from './homepagestyled';
 
 
 
-function Homepage() {
+function Homepage({fetchDirectoryStart}) {
+
+    useEffect(()=> {
+        fetchDirectoryStart()
+    },[fetchDirectoryStart]);
+
     return (
         <HomepageContainer>
-            <Directory/>
+            <DirectoryPageContainer/>
         </HomepageContainer>
     );
 };
 
+const mapDispatchToProps = dispatch => ({
+    fetchDirectoryStart: () => dispatch(fetchDirectoryStart())
+});
 
-
-export default Homepage;
+export default connect(null, mapDispatchToProps)(Homepage);

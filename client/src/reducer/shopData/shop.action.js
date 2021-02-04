@@ -18,11 +18,23 @@ export const showItem = item => ({
     type:ShopActionTypes.SHOW_ITEM,
     payload:item
 });
-export const getCollectionToRelated = title => ({
-    type:ShopActionTypes.GET_COLLECTION_TO_RELATED,
+
+export const getUpdatedRelatedProducts = (id) => ({
+    type:ShopActionTypes.UPDATE_RELATED_PRODUCTS,
+    payload:id
+});
+
+export const getColletionStart = (title) => ({
+    type:ShopActionTypes.GET_COLLECTION_FROM_FIREBASE_START,
     payload:title
 });
 
-export const getUpdatedRelatedProducts = () => ({
-    type:ShopActionTypes.UPDATE_RELATED_PRODUCTS
+export const getCollectionSuccess = (data) => ({
+    type: ShopActionTypes.GET_COLLECTION_FROM_FIREBASE_SUCCESS,
+    payload:data
+});
+
+export const getCollectionFailure = err => ({
+    type:ShopActionTypes.GET_COLLECTION_FROM_FIREBASE_FAILURE,
+    payload:err
 })

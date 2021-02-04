@@ -1,27 +1,28 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
+import {useParams} from 'react-router-dom';
 
 import {selectCollection} from '../../reducer/shopData/shopSelector';
 import CollectionItem from '../../components/collection-item/CollectionItem';
 
-import {getCollectionToRelated} from '../../reducer/shopData/shop.action';
+import {getColletionStart} from '../../reducer/shopData/shop.action';
 
 import {
     CollectionPageContainer,
     CollectionTitle,
     CollectionItemsContainer
-} from './Collection-styled'
+} from './Collection-styled';
 
-const Collection = ({collection, getCollectionToRelated}) => {  
-    
+const Collection = ({collection, getColletionStart}) => {  
+    const {collectionId} = useParams();
     const {title, items} = collection;
 
-    const onClicked = title => {
-        getCollectionToRelated(String(title.toLowerCase()))
-    }
+    useEffect(() => {
+        getColletionStart(collectionId)
+    },);
 
     return (
-        <CollectionPageContainer onClick={()=> onClicked(title)}>
+        <CollectionPageContainer>
             <CollectionTitle>{title}</CollectionTitle>
             <CollectionItemsContainer >
                 {
@@ -31,15 +32,15 @@ const Collection = ({collection, getCollectionToRelated}) => {
                 }
             </CollectionItemsContainer>
         </CollectionPageContainer>
-    )
-}
+    );
+};
 
 const mapStateToProps = (state, ownProps) => ({
     collection: selectCollection(ownProps.match.params.collectionId)(state) 
 });
 
 const mapDispatchToProps = dispatch => ({
-    getCollectionToRelated: title => dispatch(getCollectionToRelated(title))
+    getColletionStart: title => dispatch(getColletionStart(title))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Collection);

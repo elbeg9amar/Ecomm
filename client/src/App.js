@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect';
 
 import {checkUserSession} from './reducer/user/userActions';
-import {fetchDirectoryStart} from './reducer/directory/directoryAction';
 import {selectCurrentUser} from './reducer/user/userSelector';
 
 import Spinner from './components/spinner/spinner';
@@ -25,11 +24,8 @@ const SigninPage = lazy(() => import('./pagess/signinPage/SigninPage'));
 const Checkout = lazy(() => import ('./pagess/checkout/Checkout'));
 const ItemPage = lazy(() => import('./pagess/itemPage/ItemPage'));
 
-const App = ({currentUser, checkUserSession, directoryArray, fetchDirectoryStart }) =>  {
+const App = ({currentUser, checkUserSession, directoryArray}) =>  {
 
-  useEffect(()=> {
-    fetchDirectoryStart()
-},[fetchDirectoryStart]);
 
   useEffect(() => {
     checkUserSession()
@@ -50,7 +46,7 @@ const App = ({currentUser, checkUserSession, directoryArray, fetchDirectoryStart
                 : (<SigninPage/>) }
                 />
                 <Route exact path='/checkout'><Checkout/></Route>
-                <Route path='/item/:id'><ItemPage/></Route>
+                <Route exact path='/products/:productId'><ItemPage/></Route>
             </Suspense>
           </ErrorBoundary>
         </Switch>
@@ -60,7 +56,6 @@ const App = ({currentUser, checkUserSession, directoryArray, fetchDirectoryStart
 <SigninPage/>
 
 const mapDispatchToProps = dispatch => ({
-  fetchDirectoryStart: () => dispatch(fetchDirectoryStart()),
   checkUserSession: () => dispatch(checkUserSession()),
 }) ;
 
